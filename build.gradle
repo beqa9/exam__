@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.2'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'exam'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation(
+			'org.postgresql:postgresql:42.7.1',
+			'org.apache.commons:commons-lang3:3.13.0',
+			'org.springframework.boot:spring-boot-starter-data-jpa',
+			'org.springframework.boot:spring-boot-starter-web',
+			'org.springframework.boot:spring-boot-starter-validation',
+			//'org.springframework.boot:spring-boot-starter-security',
+			'jakarta.validation:jakarta.validation-api:3.0.2',
+			'org.flywaydb:flyway-core:9.22.3',
+			'org.apache.poi:poi-ooxml:5.2.4',
+			'javax.activation:activation:1.1'
+	)
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
